@@ -1,18 +1,27 @@
-//Toogle Class Active
-const navbarNav = document.querySelector(".navbar-nav");
+var slideIndex = 1
+showSlide(slideIndex)
 
-//Ketika burger menu di klik
-document.querySelector("#burger-menu").onclick = () => {
-  navbarNav.classList.toggle("active");
-};
+function nextslide(n){
+  showSlide(slideIndex += n)
 
-//klik diluar sidebar untuk menghilangkan nav nya
+}
 
-const burger = document.querySelector("#burger-menu");
+function showSlide(n){
+  var i
+  var slides = document.getElementsByClassName("imgslide")
 
-document.addEventListener("click", function (e) {
-  if (!burger.contains(e.target) && !navbarNav.contains(e.target)) {
-    //jika yang di klik bukan navbar dan burger
-    navbarNav.classList.remove("active");
+  if(n > slides.length){
+    slideIndex = 1
   }
-});
+
+  else if(n < 1){
+    slideIndex = slides.length
+  }
+
+  for(i = 0; i<slides.length; i++){
+    slides[i].style.display = "none"
+
+  }
+
+  slides[slideIndex -1].style.display = "block"
+}
